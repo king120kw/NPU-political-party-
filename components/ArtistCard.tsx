@@ -7,13 +7,14 @@ import { ScrollReveal } from './ScrollReveal';
 interface ArtistCardProps {
   artist: Artist;
   onClick: () => void;
+  delay?: number;
 }
 
-const ArtistCard: React.FC<ArtistCardProps> = ({ artist, onClick }) => {
+const ArtistCard: React.FC<ArtistCardProps> = ({ artist, onClick, delay = 0 }) => {
   const [isTouched, setIsTouched] = useState(false);
 
   return (
-    <ScrollReveal width="100%" className="h-full">
+    <ScrollReveal width="100%" className="h-full" delay={delay}>
       <motion.div
         className="group relative h-[400px] md:h-[500px] w-full overflow-hidden border-b md:border-r border-white/10 bg-black cursor-pointer"
         initial="rest"

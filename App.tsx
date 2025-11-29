@@ -332,7 +332,7 @@ const App: React.FC = () => {
             </div>
 
             {/* Visual */}
-            <ScrollReveal delay={0.3} className="order-1 lg:order-2 relative h-[400px] md:h-[600px] w-full">
+            <ScrollReveal delay={0.4} className="order-1 lg:order-2 relative h-[400px] md:h-[600px] w-full">
               <div className="absolute inset-0 bg-gradient-to-bl from-[#a8fbd3] to-[#637ab9] rounded-3xl -rotate-3 opacity-20 blur-2xl" />
               <div className="relative h-full w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
                 <img
@@ -364,8 +364,8 @@ const App: React.FC = () => {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10 bg-black/20 backdrop-blur-sm">
-            {LINEUP.slice(0, 3).map((artist) => (
-              <ArtistCard key={artist.id} artist={artist} onClick={() => setSelectedArtist(artist)} />
+            {LINEUP.slice(0, 3).map((artist, i) => (
+              <ArtistCard key={artist.id} artist={artist} onClick={() => setSelectedArtist(artist)} delay={i * 0.2} />
             ))}
           </div>
         </div>
@@ -391,8 +391,8 @@ const App: React.FC = () => {
               { id: 'p4', name: 'Security & Stability', genre: 'Peace for All', day: 'PILLAR 04', image: pillar04Img, description: 'Strengthening national security institutions to ensure lasting peace and stability across all regions.' },
               { id: 'p5', name: 'Justice & Rule of Law', genre: 'Fairness First', day: 'PILLAR 05', image: pillar05Img, description: 'Establishing an independent judiciary and upholding the rule of law to protect the rights of all citizens.' },
               { id: 'p6', name: 'International Cooperation', genre: 'Global Partners', day: 'PILLAR 06', image: pillar06Img, description: 'Strengthening diplomatic ties and cooperation with international partners for mutual benefit and growth.' },
-            ].map((pillar) => (
-              <ArtistCard key={pillar.id} artist={pillar} onClick={() => setSelectedArtist(pillar)} />
+            ].map((pillar, i) => (
+              <ArtistCard key={pillar.id} artist={pillar} onClick={() => setSelectedArtist(pillar)} delay={i * 0.15} />
             ))}
           </div>
         </div>

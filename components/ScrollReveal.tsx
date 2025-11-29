@@ -18,7 +18,7 @@ export const ScrollReveal = ({ children, width = 'fit-content', delay = 0, class
     return (
         <motion.div
             className={className}
-            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(20px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{
