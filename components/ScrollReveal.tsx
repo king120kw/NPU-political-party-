@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface ScrollRevealProps {
     children: React.ReactNode;
@@ -9,11 +9,17 @@ interface ScrollRevealProps {
 }
 
 export const ScrollReveal = ({ children, width = 'fit-content', delay = 0, className = '' }: ScrollRevealProps) => {
+    const shouldReduceMotion = useReducedMotion();
+
+    if (shouldReduceMotion) {
+        return <div className={className} style={{ width }}>{children}</div>;
+    }
+
     return (
         <motion.div
             className={className}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{
                 duration: 0.8,
