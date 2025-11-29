@@ -1,0 +1,279 @@
+/* Mobile-First Responsive Styles */
+
+/* Base Reset and Mobile Defaults */
+* {
+  -webkit-tap-highlight-color: rgba(79, 183, 179, 0.3);
+  touch-action: manipulation;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Touch-Friendly Interactive Elements */
+button,
+a,
+[role="button"],
+[data-hover="true"] {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Prevent Text Selection on Interactive Elements */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1, .text-\[15vw\] {
+    font-size: clamp(3rem, 15vw, 6rem) !important;
+  }
+  
+  h2, .text-4xl, .text-5xl {
+    font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+  }
+  
+  .text-xl, .text-2xl {
+    font-size: clamp(1rem, 4vw, 1.25rem) !important;
+  }
+}
+
+/* Mobile Navigation Improvements */
+@media (max-width: 768px) {
+  nav {
+    padding: 1rem !important;
+  }
+  
+  nav button,
+  nav a {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mobile Card Layouts */
+@media (max-width: 768px) {
+  .grid {
+    gap: 1rem !important;
+  }
+  
+  .grid-cols-1 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Responsive Spacing */
+@media (max-width: 640px) {
+  .px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .py-32 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  .gap-8 {
+    gap: 1.5rem !important;
+  }
+  
+  .gap-12 {
+    gap: 2rem !important;
+  }
+}
+
+/* Mobile Modal Improvements */
+@media (max-width: 768px) {
+  .fixed.inset-0 {
+    padding: 1rem !important;
+  }
+  
+  /* Ensure modals are scrollable on mobile */
+  .fixed.inset-0 > div {
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Prevent Horizontal Scroll */
+body,
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Mobile Form Inputs */
+input,
+textarea,
+select {
+  font-size: 16px !important; /* Prevents zoom on iOS */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@media (max-width: 640px) {
+  input,
+  textarea {
+    padding: 0.875rem !important;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile-Friendly Buttons */
+@media (max-width: 640px) {
+  button {
+    padding: 0.875rem 1.5rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Responsive Container */
+.max-w-7xl,
+.max-w-\[1600px\] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .max-w-7xl,
+  .max-w-\[1600px\] {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-w-7xl,
+  .max-w-\[1600px\] {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Mobile Hero Section */
+@media (max-width: 640px) {
+  header {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Optimize Animations for Mobile */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile Marquee Optimization */
+@media (max-width: 640px) {
+  .text-3xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .text-7xl {
+    font-size: 2.5rem !important;
+  }
+}
+
+/* Safe Area Insets for Notched Devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Mobile Card Hover States (Use Active State) */
+@media (hover: none) and (pointer: coarse) {
+  .group:active .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+  
+  .group:active .group-hover\:opacity-100 {
+    opacity: 1;
+  }
+  
+  .group:active .group-hover\:bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Responsive Text Wrapping */
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Mobile Navigation Menu Z-Index Fix */
+@media (max-width: 768px) {
+  .fixed.inset-0.z-30 {
+    z-index: 9999 !important;
+  }
+}
+
+/* Optimize Background Blur for Mobile Performance */
+@media (max-width: 768px) {
+  .backdrop-blur-xl,
+  .backdrop-blur-md,
+  .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Mobile-Friendly Footer */
+@media (max-width: 640px) {
+  footer {
+    padding: 2rem 1rem !important;
+  }
+  
+  footer .flex {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start !important;
+  }
+}
