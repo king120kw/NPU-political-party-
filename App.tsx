@@ -11,6 +11,7 @@ import FluidBackground from './components/FluidBackground';
 import GradientText from './components/GlitchText';
 import CustomCursor from './components/CustomCursor';
 import ArtistCard from './components/ArtistCard';
+import { ScrollReveal } from './components/ScrollReveal';
 import { Artist } from './types';
 
 // Import all images
@@ -126,6 +127,9 @@ const App: React.FC = () => {
     setSelectedArtist(LINEUP[nextIndex]);
   };
 
+  // Mobile Touch Handler Helper
+  const [touchedCard, setTouchedCard] = useState<string | null>(null);
+
   return (
     <div className="relative min-h-screen text-white selection:bg-[#4fb7b3] selection:text-black cursor-auto md:cursor-none overflow-x-hidden">
       <CustomCursor />
@@ -204,16 +208,15 @@ const App: React.FC = () => {
           className="z-10 text-center flex flex-col items-center w-full max-w-6xl pb-24 md:pb-20"
         >
           {/* Date / Location */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="flex items-center gap-3 md:gap-6 text-xs md:text-base font-mono text-[#a8fbd3] tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm"
-          >
-            <span>Mogadishu</span>
-            <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#4fb7b3] rounded-full animate-pulse" />
-            <span>Est. 2025</span>
-          </motion.div>
+          <ScrollReveal delay={0.2}>
+            <motion.div
+              className="flex items-center gap-3 md:gap-6 text-xs md:text-base font-mono text-[#a8fbd3] tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm"
+            >
+              <span>Mogadishu</span>
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#4fb7b3] rounded-full animate-pulse" />
+              <span>Est. 2025</span>
+            </motion.div>
+          </ScrollReveal>
 
           {/* Main Title */}
           <div className="relative w-full flex justify-center items-center">
@@ -233,11 +236,13 @@ const App: React.FC = () => {
               />
             </div>
 
-            <GradientText
-              text="NPU"
-              as="h1"
-              className="text-[15vw] md:text-[14vw] leading-[0.9] font-black tracking-tighter text-center"
-            />
+            <ScrollReveal delay={0.4}>
+              <GradientText
+                text="NPU"
+                as="h1"
+                className="text-[15vw] md:text-[14vw] leading-[0.9] font-black tracking-tighter text-center"
+              />
+            </ScrollReveal>
             {/* Optimized Orb - Reduced Blur for Performance */}
             <motion.div
               className="absolute -z-20 w-[50vw] h-[50vw] bg-white/5 blur-[40px] rounded-full pointer-events-none will-change-transform"
@@ -254,14 +259,11 @@ const App: React.FC = () => {
             className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mt-4 md:mt-8 mb-6 md:mb-8"
           />
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 1 }}
-            className="text-base md:text-2xl font-light max-w-xl mx-auto text-white/90 leading-relaxed drop-shadow-lg px-4"
-          >
-            Unity. Progress. National Dialogue.
-          </motion.p>
+          <ScrollReveal delay={0.6}>
+            <p className="text-base md:text-2xl font-light max-w-xl mx-auto text-white/90 leading-relaxed drop-shadow-lg px-4">
+              Unity. Progress. National Dialogue.
+            </p>
+          </ScrollReveal>
         </motion.div>
 
         {/* MARQUEE - SLOWED DOWN for Performance & Aesthetics */}
@@ -292,39 +294,45 @@ const App: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
             {/* Text Content */}
             <div className="order-2 lg:order-1">
-              <h2 className="text-4xl md:text-7xl font-heading font-bold mb-8 leading-tight">
-                The <br /> <GradientText text="ORIGIN" className="text-5xl md:text-8xl" />
-              </h2>
+              <ScrollReveal>
+                <h2 className="text-4xl md:text-7xl font-heading font-bold mb-8 leading-tight">
+                  The <br /> <GradientText text="ORIGIN" className="text-5xl md:text-8xl" />
+                </h2>
+              </ScrollReveal>
 
-              <div className="space-y-6 text-lg text-gray-300 font-light leading-relaxed">
-                <p>
-                  <span className="text-[#a8fbd3] font-bold">September 2, 2025.</span> A new chapter for Somalia began in Mogadishu.
-                  Born from the urgent need for true national unity, the <strong className="text-white">Horumar iyo Midnimo Qaran (NPU)</strong> emerged
-                  to bridge divides and champion a progressive agenda.
-                </p>
-                <p>
-                  Led by visionaries Sharif Hassan Sheikh Aden and Mohamed Mursal, we broke away from the status quo
-                  to forge a path toward direct, one-person-one-vote democracy.
-                </p>
-              </div>
+              <ScrollReveal delay={0.2}>
+                <div className="space-y-6 text-lg text-gray-300 font-light leading-relaxed">
+                  <p>
+                    <span className="text-[#a8fbd3] font-bold">September 2, 2025.</span> A new chapter for Somalia began in Mogadishu.
+                    Born from the urgent need for true national unity, the <strong className="text-white">Horumar iyo Midnimo Qaran (NPU)</strong> emerged
+                    to bridge divides and champion a progressive agenda.
+                  </p>
+                  <p>
+                    Led by visionaries Sharif Hassan Sheikh Aden and Mohamed Mursal, we broke away from the status quo
+                    to forge a path toward direct, one-person-one-vote democracy.
+                  </p>
+                </div>
+              </ScrollReveal>
 
-              <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-                {[
-                  { date: 'Aug 24', event: 'The Spark', desc: 'Leaders unite for change' },
-                  { date: 'Sep 02', event: 'The Launch', desc: 'NPU founded in Mogadishu' },
-                  { date: 'Sep 07', event: 'Certified', desc: 'Official Party Status' },
-                ].map((item, i) => (
-                  <div key={i} className="bg-white/5 border border-white/10 p-4 rounded-xl hover:bg-white/10 transition-colors">
-                    <div className="text-[#4fb7b3] font-mono text-xs mb-1">{item.date}</div>
-                    <div className="text-white font-bold uppercase text-sm mb-1">{item.event}</div>
-                    <div className="text-gray-400 text-xs">{item.desc}</div>
-                  </div>
-                ))}
-              </div>
+              <ScrollReveal delay={0.4}>
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    { date: 'Aug 24', event: 'The Spark', desc: 'Leaders unite for change' },
+                    { date: 'Sep 02', event: 'The Launch', desc: 'NPU founded in Mogadishu' },
+                    { date: 'Sep 07', event: 'Certified', desc: 'Official Party Status' },
+                  ].map((item, i) => (
+                    <div key={i} className="bg-white/5 border border-white/10 p-4 rounded-xl hover:bg-white/10 transition-colors">
+                      <div className="text-[#4fb7b3] font-mono text-xs mb-1">{item.date}</div>
+                      <div className="text-white font-bold uppercase text-sm mb-1">{item.event}</div>
+                      <div className="text-gray-400 text-xs">{item.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
 
             {/* Visual */}
-            <div className="order-1 lg:order-2 relative h-[400px] md:h-[600px] w-full">
+            <ScrollReveal delay={0.3} className="order-1 lg:order-2 relative h-[400px] md:h-[600px] w-full">
               <div className="absolute inset-0 bg-gradient-to-bl from-[#a8fbd3] to-[#637ab9] rounded-3xl -rotate-3 opacity-20 blur-2xl" />
               <div className="relative h-full w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
                 <img
@@ -338,7 +346,7 @@ const App: React.FC = () => {
                   <div className="font-heading text-3xl font-bold text-white">A Fresh Start</div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -346,12 +354,14 @@ const App: React.FC = () => {
       {/* LEADERS SECTION */}
       <section id="leaders" className="relative z-10 py-20 md:py-32">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 px-4">
-            <h2 className="text-5xl md:text-8xl font-heading font-bold uppercase leading-[0.9] drop-shadow-lg break-words w-full md:w-auto">
-              Our <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8fbd3] to-[#4fb7b3]">Leaders</span>
-            </h2>
-          </div>
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 px-4">
+              <h2 className="text-5xl md:text-8xl font-heading font-bold uppercase leading-[0.9] drop-shadow-lg break-words w-full md:w-auto">
+                Our <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8fbd3] to-[#4fb7b3]">Leaders</span>
+              </h2>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10 bg-black/20 backdrop-blur-sm">
             {LINEUP.slice(0, 3).map((artist) => (
@@ -364,12 +374,14 @@ const App: React.FC = () => {
       {/* PLATFORM SECTION */}
       <section id="platform" className="relative z-10 py-20 md:py-32">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 px-4">
-            <h2 className="text-5xl md:text-8xl font-heading font-bold uppercase leading-[0.9] drop-shadow-lg break-words w-full md:w-auto">
-              Our <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8fbd3] to-[#4fb7b3]">Platform</span>
-            </h2>
-          </div>
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 px-4">
+              <h2 className="text-5xl md:text-8xl font-heading font-bold uppercase leading-[0.9] drop-shadow-lg break-words w-full md:w-auto">
+                Our <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8fbd3] to-[#4fb7b3]">Platform</span>
+              </h2>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10 bg-black/20 backdrop-blur-sm">
             {[
@@ -389,26 +401,40 @@ const App: React.FC = () => {
       {/* LATEST UPDATES SECTION */}
       <section id="updates" className="relative z-10 py-20 md:py-32 bg-black/20 backdrop-blur-sm border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <h2 className="text-4xl md:text-7xl font-heading font-bold mb-12 leading-tight text-center">
-            Latest <GradientText text="UPDATES" />
-          </h2>
+          <ScrollReveal>
+            <h2 className="text-4xl md:text-7xl font-heading font-bold mb-12 leading-tight text-center">
+              Latest <GradientText text="UPDATES" />
+            </h2>
+          </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { date: 'Sep 02, 2025', title: 'NPU Launches in Mogadishu', image: npuLogoPng },
               { date: 'Sep 10, 2025', title: 'Chairman Calls for Unity', image: chairmanUpdateImg },
               { date: 'Sep 15, 2025', title: 'Youth Wing Registration', image: youthUpdateImg },
             ].map((news, i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="relative h-64 mb-6 overflow-hidden rounded-2xl border border-white/10">
-                  <img src={news.image} alt={news.title} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-100" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+              <ScrollReveal key={i} delay={i * 0.15}>
+                <div
+                  className={`group cursor-pointer ${touchedCard === `update-${i}` ? 'active' : ''}`}
+                  onTouchStart={() => setTouchedCard(`update-${i}`)}
+                  onTouchEnd={() => setTimeout(() => setTouchedCard(null), 300)}
+                >
+                  <div className="relative h-64 mb-6 overflow-hidden rounded-2xl border border-white/10">
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-100 ${touchedCard === `update-${i}` ? 'scale-110 opacity-100' : ''}`}
+                    />
+                    <div className={`absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors ${touchedCard === `update-${i}` ? 'bg-transparent' : ''}`} />
+                  </div>
+                  <div className="text-[#4fb7b3] font-mono text-xs mb-2">{news.date}</div>
+                  <h3 className={`text-2xl font-bold leading-tight mb-4 group-hover:text-[#a8fbd3] transition-colors ${touchedCard === `update-${i}` ? 'text-[#a8fbd3]' : ''}`}>
+                    {news.title}
+                  </h3>
+                  <div className={`flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors ${touchedCard === `update-${i}` ? 'text-white' : ''}`}>
+                    Read More <ChevronRight className="w-4 h-4" />
+                  </div>
                 </div>
-                <div className="text-[#4fb7b3] font-mono text-xs mb-2">{news.date}</div>
-                <h3 className="text-2xl font-bold leading-tight mb-4 group-hover:text-[#a8fbd3] transition-colors">{news.title}</h3>
-                <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                  Read More <ChevronRight className="w-4 h-4" />
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -417,12 +443,16 @@ const App: React.FC = () => {
       {/* GET INVOLVED SECTION */}
       <section id="get-involved" className="relative z-10 py-20 md:py-32 px-4 md:px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-5xl md:text-9xl font-heading font-bold text-white mb-8">
-            GET <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8fbd3] to-[#4fb7b3]">INVOLVED</span>
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-16 font-light">
-            Be the change you want to see. Join the movement for a united and progressive Somalia.
-          </p>
+          <ScrollReveal>
+            <h2 className="text-5xl md:text-9xl font-heading font-bold text-white mb-8">
+              GET <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a8fbd3] to-[#4fb7b3]">INVOLVED</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-16 font-light">
+              Be the change you want to see. Join the movement for a united and progressive Somalia.
+            </p>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -448,40 +478,43 @@ const App: React.FC = () => {
                 lordicon: 'https://cdn.lordicon.com/qhviklyi.json'
               },
             ].map((item, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden p-8 border border-white/10 rounded-2xl bg-black/40 hover:bg-black/20 transition-all duration-500 text-left group h-[450px] flex flex-col justify-end cursor-pointer"
-              >
-                {/* Background Image with Hover Effect */}
+              <ScrollReveal key={i} delay={0.3 + (i * 0.15)}>
                 <div
-                  className="absolute inset-0 bg-cover bg-center opacity-0 scale-105 group-hover:opacity-100 group-hover:scale-100 transition-all duration-1000 ease-in-out"
-                  style={{
-                    backgroundImage: `url(${item.image})`,
-                  }}
-                />
+                  className={`relative overflow-hidden p-8 border border-white/10 rounded-2xl bg-black/40 hover:bg-black/20 transition-all duration-500 text-left group h-[450px] flex flex-col justify-end cursor-pointer ${touchedCard === `involved-${i}` ? 'bg-black/20' : ''}`}
+                  onTouchStart={() => setTouchedCard(`involved-${i}`)}
+                  onTouchEnd={() => setTimeout(() => setTouchedCard(null), 300)}
+                >
+                  {/* Background Image with Hover Effect */}
+                  <div
+                    className={`absolute inset-0 bg-cover bg-center opacity-0 scale-105 group-hover:opacity-100 group-hover:scale-100 transition-all duration-1000 ease-in-out ${touchedCard === `involved-${i}` ? 'opacity-100 scale-100' : ''}`}
+                    style={{
+                      backgroundImage: `url(${item.image})`,
+                    }}
+                  />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
 
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Lordicon Animated Icon */}
-                  <div className="mb-6">
-                    <lord-icon
-                      src={item.lordicon}
-                      trigger="loop"
-                      colors="primary:#4fb7b3,secondary:#a8fbd3"
-                      style={{ width: '64px', height: '64px' }}
-                    />
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Lordicon Animated Icon */}
+                    <div className="mb-6">
+                      <lord-icon
+                        src={item.lordicon}
+                        trigger="loop"
+                        colors="primary:#4fb7b3,secondary:#a8fbd3"
+                        style={{ width: '64px', height: '64px' }}
+                      />
+                    </div>
+
+                    <h3 className="text-2xl font-bold mb-2 text-white">{item.title}</h3>
+                    <p className="text-gray-300 mb-8">{item.desc}</p>
+                    <button className="w-full py-4 border border-white/20 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all text-white bg-transparent">
+                      {item.action}
+                    </button>
                   </div>
-
-                  <h3 className="text-2xl font-bold mb-2 text-white">{item.title}</h3>
-                  <p className="text-gray-300 mb-8">{item.desc}</p>
-                  <button className="w-full py-4 border border-white/20 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all text-white bg-transparent">
-                    {item.action}
-                  </button>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -502,39 +535,45 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-4xl md:text-6xl font-heading font-bold mb-8">
-                Contact <GradientText text="US" />
-              </h2>
-              <div className="space-y-8 text-lg">
-                <div className="flex items-start gap-6">
-                  <MapPin className="w-6 h-6 text-[#4fb7b3] mt-1" />
-                  <div>
-                    <h4 className="font-bold uppercase tracking-widest mb-1">Headquarters</h4>
-                    <p className="text-gray-400">Maka Al-Mukarama Road<br />Mogadishu, Somalia</p>
+              <ScrollReveal>
+                <h2 className="text-4xl md:text-6xl font-heading font-bold mb-8">
+                  Contact <GradientText text="US" />
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.2}>
+                <div className="space-y-8 text-lg">
+                  <div className="flex items-start gap-6">
+                    <MapPin className="w-6 h-6 text-[#4fb7b3] mt-1" />
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest mb-1">Headquarters</h4>
+                      <p className="text-gray-400">Maka Al-Mukarama Road<br />Mogadishu, Somalia</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-6">
+                    <Globe className="w-6 h-6 text-[#4fb7b3] mt-1" />
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest mb-1">Digital</h4>
+                      <p className="text-gray-400">info@npu.so<br />@NPU_Somalia</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-6">
-                  <Globe className="w-6 h-6 text-[#4fb7b3] mt-1" />
-                  <div>
-                    <h4 className="font-bold uppercase tracking-widest mb-1">Digital</h4>
-                    <p className="text-gray-400">info@npu.so<br />@NPU_Somalia</p>
-                  </div>
-                </div>
-              </div>
+              </ScrollReveal>
             </div>
 
-            <div className="bg-white/5 p-8 rounded-[2.5rem] border border-white/10 backdrop-blur-md shadow-2xl">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input type="text" placeholder="Name" className="w-full bg-black/20 border border-white/10 p-4 rounded-xl text-white focus:border-[#4fb7b3] outline-none transition-colors" />
-                  <input type="email" placeholder="Email" className="w-full bg-black/20 border border-white/10 p-4 rounded-xl text-white focus:border-[#4fb7b3] outline-none transition-colors" />
-                </div>
-                <textarea placeholder="Message" rows={4} className="w-full bg-black/20 border border-white/10 p-4 rounded-xl text-white focus:border-[#4fb7b3] outline-none transition-colors" />
-                <button className="w-full py-4 bg-[#4fb7b3] text-black font-bold uppercase tracking-widest hover:bg-white transition-colors rounded-xl">
-                  Send Message
-                </button>
-              </form>
-            </div>
+            <ScrollReveal delay={0.4}>
+              <div className="bg-white/5 p-8 rounded-[2.5rem] border border-white/10 backdrop-blur-md shadow-2xl">
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Name" className="w-full bg-black/20 border border-white/10 p-4 rounded-xl text-white focus:border-[#4fb7b3] outline-none transition-colors" />
+                    <input type="email" placeholder="Email" className="w-full bg-black/20 border border-white/10 p-4 rounded-xl text-white focus:border-[#4fb7b3] outline-none transition-colors" />
+                  </div>
+                  <textarea placeholder="Message" rows={4} className="w-full bg-black/20 border border-white/10 p-4 rounded-xl text-white focus:border-[#4fb7b3] outline-none transition-colors" />
+                  <button className="w-full py-4 bg-[#4fb7b3] text-black font-bold uppercase tracking-widest hover:bg-white transition-colors rounded-xl">
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
